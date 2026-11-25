@@ -1,4 +1,4 @@
-//week11-1 21. Merge Two Sorted Lists
+//week11-4 206. Reverse Linked List
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -11,35 +11,18 @@
  */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+    ListNode* reverseList(ListNode* head) {
+        vector<int> a;
+        while (head != nullptr){
+            a.push_back( head->val );
+            head = head->next;
+        }
         ListNode * ans = new ListNode(999);
         ListNode * now = ans;
-        while (list1 != nullptr || list2 != nullptr){
-            if (list1 == nullptr){
-                now->next = list2;
-                break;
-            } else if (list2 == nullptr){
-                now->next = list1;
-                break;
-            } else {
-                if (list1->val < list2->val){
-                    now->next = new ListNode(list1->val);
-                    now = now->next;
-                    list1 = list1->next;
-                }else{
-                    now->next = new ListNode(list2->val);
-                    now = now->next;
-                    list2 = list2->next;
-                }
-            }
+        for(int i=a.size()-1; i>=0; i--){
+            now->next = new ListNode( a[i] );
+            now = now-> next;
         }
         return ans->next;
-        //ListNode* now = list1;//走過所有數字
-        //while (now != nullptr){//now有東西
-        //    cout << now->val << " ";//用now->val印出來
-        //    now = now->next;//指到下一筆
-        //}
-        //ListNode* ans = new ListNode(999);
-        //return ans;
     }
 };
